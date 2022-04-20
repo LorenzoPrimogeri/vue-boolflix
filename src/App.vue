@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent @search="searchContents" />
-    <MainComponent
-      :arrayFilm="movieOrSerie('movie')"
-      :arraySerie="movieOrSerie('tv')"
-    />
+    <MainComponent :arrayFilm="arrayFilm" :arraySerie="arrayFilm" />
   </div>
 </template>
 
@@ -26,9 +23,9 @@ export default {
     };
   },
   methods: {
-    movieOrSerie(search) {
+    /* movieOrSerie(search) {
       return this.searchContents("", search);
-    },
+    },*/
     searchContents(inpuText, searchingPhase) {
       console.log("la parola da cercare è " + inpuText);
       console.log("la searchingPhase è " + searchingPhase);
@@ -39,8 +36,9 @@ export default {
           langugage: "it-IT",
         };
         axios
-          .get(this.apiUrl + searchingPhase, { params })
+          .get(this.apiUrl + "movie", { params })
           .then((response) => {
+            console.log(response.data);
             this.arrayFilm = response.data.results;
             console.log(this.arrayFilm);
             return this.arrayFilm;

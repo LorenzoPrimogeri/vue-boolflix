@@ -3,7 +3,11 @@
     <div v-for="film in arrayFilm" :key="film.id">
       <p>{{ film.title }}</p>
       <p>{{ film.original_title }}</p>
-      <p>{{ film.original_language }}</p>
+      <img
+        :src="'../assets/img/' + film.original_language + '.png'"
+        :alt="film.original_language"
+      />
+      <img src="../assets/img/it.png" alt="">
       <p>{{ film.vote_average }}</p>
     </div>
   </div>
@@ -15,15 +19,6 @@ export default {
   props: {
     arrayFilm: Array,
   },
-  computed: {
-    indentyCountry() {
-      const filter = this.arrayFilm.filter((item) => {
-        return;
-      });
-      return filter;
-    },
-  },
-  methods: {},
 };
 </script>
 
