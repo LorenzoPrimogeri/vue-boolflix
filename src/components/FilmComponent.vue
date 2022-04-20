@@ -15,13 +15,12 @@ export default {
   props: {
     arrayFilm: Array,
   },
-  methods: {
-    indentyCountry(country) {
-      if (country == "it") {
-        //  this.arrayFilm[index].original_language = "./assets/img/italia.png";
-      }
+  computed: {
+    indentyCountry() {
+     this.arrayFilm.filter() 
     },
   },
+  methods: {},
 };
 </script>
 
