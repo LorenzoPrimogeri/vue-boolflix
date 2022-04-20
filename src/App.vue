@@ -2,8 +2,8 @@
   <div id="app">
     <HeaderComponent @search="searchContents" />
     <MainComponent
-      :arrayFilm="filmArray('movie')"
-      :arraySerie="filmArray('tv')"
+      :arrayFilm="movieOrSerie('movie')"
+      :arraySerie="movieOrSerie('tv')"
     />
   </div>
 </template>
@@ -26,11 +26,12 @@ export default {
     };
   },
   methods: {
-    filmArray(search) {
+    movieOrSerie(search) {
       return this.searchContents("", search);
     },
     searchContents(inpuText, searchingPhase) {
-      console.log("questo è" + searchingPhase);
+      console.log("la parola da cercare è " + inpuText);
+      console.log("la searchingPhase è " + searchingPhase);
       if (inpuText.length > 0) {
         const params = {
           query: inpuText,
@@ -47,7 +48,6 @@ export default {
           .catch((error) => {
             console.log(error);
           });
-        console.log(inpuText);
       }
     },
   },
