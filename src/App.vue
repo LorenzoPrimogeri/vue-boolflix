@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <HeaderComponent @search="searchContents" />
-    <MainComponent :arrayFilm="arrayFilm" />
+    <MainComponent
+      :arrayFilm="filmArray('movie')"
+      :arraySerie="filmArray('tv')"
+    />
   </div>
 </template>
 
@@ -23,27 +26,36 @@ export default {
     };
   },
   methods: {
-    searchContents(inpuText) {
-      const params = {
-        query: inpuText,
-        api_key: this.apiKey,
-        langugage: "it-IT",
-      };
-      axios
-        .get(this.apiUrl + "movie", { params })
-        .then((response) => {
-          this.arrayFilm = response.data.results;
-          console.log(this.arrayFilm);
-          return this.arrayFilm;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      console.log(inpuText);
+    filmArray(search) {
+      return this.searchContents("", search);
+    },
+    searchContents(inpuText, searchingPhase) {
+      console.log("questo è" + searchingPhase);
+      if (inpuText.length > 0) {
+        const params = {
+          query: inpuText,
+          api_key: this.apiKey,
+          langugage: "it-IT",
+        };
+        axios
+          .get(this.apiUrl + searchingPhase, { params })
+          .then((response) => {
+            this.arrayFilm = response.data.results;
+            console.log(this.arrayFilm);
+            return this.arrayFilm;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        console.log(inpuText);
+      }
     },
   },
 };
 </script>
 
 <style lang="scss">
+div {
+  text-align: center;
+}
 </style>

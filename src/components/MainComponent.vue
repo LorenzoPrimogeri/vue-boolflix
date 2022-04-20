@@ -1,19 +1,22 @@
 <template>
   <div>
-    <div v-for="film in arrayFilm" :key="film.id">
-      <p>{{ film.title }}</p>
-      <p>{{ film.original_title }}</p>
-      <p>{{ film.original_language }}</p>
-      <p>{{ film.vote_average }}</p>
-    </div>
+    <FilmComponent :arrayFilm="arrayFilm" />
+    <SerieComponent :arraySerie="arraySerie" />
   </div>
 </template>
 
 <script>
+import FilmComponent from "./FilmComponent.vue";
+import SerieComponent from "./SerieComponent.vue";
 export default {
   name: "MainComponent",
+  components: {
+    FilmComponent,
+    SerieComponent,
+  },
   props: {
     arrayFilm: Array,
+    arraySerie: Array,
   },
 };
 </script>
