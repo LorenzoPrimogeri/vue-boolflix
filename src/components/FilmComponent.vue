@@ -17,7 +17,10 @@ export default {
   },
   computed: {
     indentyCountry() {
-     this.arrayFilm.filter() 
+      const filter = this.arrayFilm.filter((item) => {
+        return;
+      });
+      return filter;
     },
   },
   methods: {},
