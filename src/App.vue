@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent @search="searchContents" />
-    <MainComponent
-      :arrayFilm="movieOrSerie('movie')"
-      :arraySerie="movieOrSerie('tv')"
-    />
+    <MainComponent :arrayFilm="films" :arraySerie="series" />
   </div>
 </template>
 
@@ -22,16 +19,15 @@ export default {
     return {
       apiKey: "2f328d6399188dd310a23b37fa808671",
       apiUrl: "https://api.themoviedb.org/3/search/",
-      arrayFilm: [],
+      films: [],
+      series: [],
     };
   },
   methods: {
     movieOrSerie(search) {
       return this.searchContents("", search);
     },
-    searchContents(inpuText, searchingPhase) {
-      console.log("la parola da cercare è " + inpuText);
-      console.log("la searchingPhase è " + searchingPhase);
+    searchContents(inpuText) {
       if (inpuText.length > 0) {
         const params = {
           query: inpuText,
@@ -39,12 +35,19 @@ export default {
           langugage: "it-IT",
         };
         axios
-          .get(this.apiUrl + searchingPhase, { params })
+          .get(this.apiUrl + "movie", { params })
           .then((response) => {
             console.log(response.data);
-            this.arrayFilm = response.data.results;
-            console.log(this.arrayFilm);
-            return this.arrayFilm;
+            this.films = response.data.results;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        axios
+          .get(this.apiUrl + "tv", { params })
+          .then((response) => {
+            console.log(response.data);
+            this.series = response.data.results;
           })
           .catch((error) => {
             console.log(error);
