@@ -7,9 +7,9 @@
       <div
         v-for="film in films"
         :key="film.id"
-        class="col-2 lp-card position-relative p-4 m-4 "
+        class="col-2 lp-card position-relative m-4"
       >
-        <div class="h-100">
+        <div class="w-100">
           <img
             :src="getImage(film.backdrop_path)"
             :alt="film.title"
@@ -39,6 +39,9 @@
                 />
               </span>
             </p>
+            <div class="overview h-75 overflow-auto w-100">
+              <p class="c-white">{{ film.overview }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +113,8 @@ export default {
 .card-image {
   width: 100%;
 }
-.lp-card {
+.lp-card{
+height: 300px;
 }
 .onHover {
   background-color: rgba(0, 0, 0, 0.7);

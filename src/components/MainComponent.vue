@@ -2,6 +2,7 @@
   <div>
     <FilmComponent :films="films" />
     <SerieComponent :series="series" />
+    
   </div>
 </template>
 

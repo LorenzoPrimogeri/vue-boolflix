@@ -2,18 +2,21 @@
   <div id="app">
     <HeaderComponent @search="searchContents" />
     <MainComponent :films="films" :series="series" />
+    <NoContent :films="films" />
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import MainComponent from "./components/MainComponent.vue";
+import NoContent from "./components/NoContent.vue";
 import axios from "axios";
 export default {
   name: "App",
   components: {
     MainComponent,
     HeaderComponent,
+    NoContent,
   },
   data() {
     return {
@@ -42,6 +45,8 @@ export default {
     },
     searchContents(inpuText) {
       if (inpuText.length > 0) {
+        this.films = [];
+        this.series = [];
         this.axiosfunction("movie", inpuText, this.films);
         this.axiosfunction("tv", inpuText, this.series);
       }
