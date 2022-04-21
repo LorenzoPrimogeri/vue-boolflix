@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent @search="searchContents" />
-    <MainComponent :arrayFilm="films" :arraySerie="series" />
+    <MainComponent :films="films" :series="series" />
   </div>
 </template>
 
@@ -24,34 +24,26 @@ export default {
     };
   },
   methods: {
-    movieOrSerie(search) {
-      return this.searchContents("", search);
+    axiosfunction(searchPhase, inpuText) {
+      const params = {
+        query: inpuText,
+        api_key: this.apiKey,
+        langugage: "it-IT",
+      };
+      axios
+        .get(this.apiUrl + searchPhase, { params })
+        .then((response) => {
+          console.log(response.data);
+          return response.data.results;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     searchContents(inpuText) {
       if (inpuText.length > 0) {
-        const params = {
-          query: inpuText,
-          api_key: this.apiKey,
-          langugage: "it-IT",
-        };
-        axios
-          .get(this.apiUrl + "movie", { params })
-          .then((response) => {
-            console.log(response.data);
-            this.films = response.data.results;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        axios
-          .get(this.apiUrl + "tv", { params })
-          .then((response) => {
-            console.log(response.data);
-            this.series = response.data.results;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        this.films = this.axiosfunction("movie", inpuText);
+        this.series = this.axiosfunction("tv", inpuText);
       }
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <FilmComponent :arrayFilm="arrayFilm" />
-    <SerieComponent :arraySerie="arraySerie" />
+    <FilmComponent :films="films" />
+    <SerieComponent :series="series" />
   </div>
 </template>
 
@@ -15,11 +15,12 @@ export default {
     SerieComponent,
   },
   props: {
-    arrayFilm: Array,
-    arraySerie: Array,
+    films: Array,
+    series: Array,
   },
 };
 </script>
 
 <style scoped>
 </style>
+foglio di mezzo di contrasto per la tac, me lo potete mandare via email

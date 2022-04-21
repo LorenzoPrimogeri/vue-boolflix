@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="film in arrayFilm" :key="film.id">
+    <div v-for="film in films" :key="film.id">
       <p>{{ film.title }}</p>
       <p>{{ film.original_title }}</p>
       <img
@@ -16,7 +16,7 @@
 export default {
   name: "FilmComponent",
   props: {
-    arrayFilm: Array,
+    films: Array,
   },
   methods: {
     getFlag(langugage) {
