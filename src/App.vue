@@ -59,6 +59,9 @@ export default {
 .c-white {
   color: white;
 }
+.c-yellow {
+  color: yellow;
+}
 .bg-black {
   background-color: black;
 }
@@ -68,4 +71,5 @@ ul {
 body {
   font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 </style>
