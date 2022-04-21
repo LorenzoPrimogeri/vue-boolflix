@@ -24,7 +24,7 @@ export default {
     };
   },
   methods: {
-    axiosfunction(searchPhase, inpuText) {
+    axiosfunction(searchPhase, inpuText, array) {
       const params = {
         query: inpuText,
         api_key: this.apiKey,
@@ -34,7 +34,7 @@ export default {
         .get(this.apiUrl + searchPhase, { params })
         .then((response) => {
           console.log(response.data);
-          return response.data.results;
+          array.push(...response.data.results);
         })
         .catch((error) => {
           console.log(error);
@@ -42,8 +42,8 @@ export default {
     },
     searchContents(inpuText) {
       if (inpuText.length > 0) {
-        this.films = this.axiosfunction("movie", inpuText);
-        this.series = this.axiosfunction("tv", inpuText);
+        this.axiosfunction("movie", inpuText, this.films);
+        this.axiosfunction("tv", inpuText, this.series);
       }
     },
   },

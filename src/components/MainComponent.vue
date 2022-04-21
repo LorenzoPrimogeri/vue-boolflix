@@ -23,4 +23,3 @@ export default {
 
 <style scoped>
 </style>
-foglio di mezzo di contrasto per la tac, me lo potete mandare via email
