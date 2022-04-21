@@ -68,8 +68,10 @@ export default {
 ul {
   list-style-type: none;
 }
+p {
+  margin: 0;
+}
 body {
   font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 </style>
