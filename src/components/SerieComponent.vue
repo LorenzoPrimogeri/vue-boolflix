@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <div v-for="serie in series" :key="serie.id">
-      <p>{{ serie.title }}</p>
-      <p>{{ serie.original_title }}</p>
-      <img
-        :src="getFlag(serie.original_language)"
-        :alt="serie.original_language"
-      />
-      <p>{{ serie.vote_average }}</p>
+  <div class="container-fluid bg-black">
+    <div v-if="series.length > 0">
+      <h1 class="text-center c-white">Serie Tv</h1>
+    </div>
+    <div class="row">
+      <div v-for="serie in series" :key="serie.id" class="col-3">
+        <p>{{ serie.title }}</p>
+        
+        <p>{{ serie.original_title }}</p>
+        <img
+          :src="getFlag(serie.original_language)"
+          :alt="serie.original_language"
+        />
+        <p>{{ serie.vote_average }}</p>
+      </div>
     </div>
   </div>
 </template>

@@ -51,7 +51,21 @@ export default {
 </script>
 
 <style lang="scss">
-div {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.c-white {
+  color: white;
+}
+.bg-black {
+  background-color: black;
+}
+ul {
+  list-style-type: none;
+}
+body {
+  font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 </style>
