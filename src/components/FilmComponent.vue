@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid bg-black">
-    <div v-if="films.length > 0">
+  <div v-if="films.length > 0" class="container-fluid bg-black">
+    <div>
       <h1 class="text-center c-white">Film</h1>
     </div>
     <div class="row c-white justify-content-between">
@@ -9,9 +9,9 @@
         :key="film.id"
         class="col-2 lp-card position-relative m-4"
       >
-        <div class="w-100">
+        <div class="h-100">
           <img
-            :src="getImage(film.backdrop_path)"
+            :src="getImage(film.poster_path)"
             :alt="film.title"
             class="card-image"
             @error="setAltImg"
@@ -97,9 +97,7 @@ export default {
       if (value == 0) {
         yellowstar = 0;
       }
-      console.log(yellowstar);
       const result = 5 - yellowstar;
-      console.log("il risultato è" + result);
       return result;
     },
     setAltImg(event) {
@@ -110,11 +108,11 @@ export default {
 </script>
 
 <style scoped>
-.card-image {
-  width: 100%;
+.lp-card {
+  height: 300px;
 }
-.lp-card{
-height: 300px;
+.card-image {
+  height: 100%;
 }
 .onHover {
   background-color: rgba(0, 0, 0, 0.7);

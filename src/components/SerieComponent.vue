@@ -1,24 +1,56 @@
 <template>
-  <div class="container-fluid bg-black">
-    <div v-if="series.length > 0">
-      <h1 class="text-center c-white">Serie Tv</h1>
+  <div v-if="series.length > 0" class="container-fluid py-5 bg-black">
+    <div>
+      <h1 class="text-center c-white">Serie TV</h1>
     </div>
-    <div class="row">
-      <div v-for="serie in series" :key="serie.id" class="col-3">
-        <p>{{ serie.title }}</p>
-        
-        <p>{{ serie.original_title }}</p>
-        <img
-          :src="getFlag(serie.original_language)"
-          :alt="serie.original_language"
-        />
-        <p>{{ serie.vote_average }}</p>
+    <div class="row c-white gy-2 justify-content-between">
+      <div
+        v-for="film in series"
+        :key="film.id"
+        class="col-2 lp-card position-relative m-4"
+      >
+        <div class="">
+          <img
+            :src="getImage(film.poster_path)"
+            :alt="film.name"
+            class="card-image"
+            @error="setAltImg"
+          />
+          <div class="onHover">
+            <p>{{ film.name }}</p>
+            <div>
+              <img
+                :src="getFlag(film.original_language)"
+                :alt="film.original_language"
+              />
+            </div>
+            <p class="c-white">
+              <font-awesome-icon
+                v-for="(star, index) in getValue(film.vote_average)"
+                :key="index"
+                icon="fa-solid fa-star"
+                class="c-yellow"
+              /><span>
+                <font-awesome-icon
+                  v-for="(star, index) in getWhiteStar(film.vote_average)"
+                  :key="index"
+                  icon="fa-solid fa-star"
+                  class="c-white"
+                />
+              </span>
+            </p>
+            <div class="overview h-75 overflow-auto w-100">
+              <p class="c-white">{{ film.overview }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import img from "../assets/img/error.png";
 export default {
   name: "FilmComponent",
   props: {
@@ -40,9 +72,52 @@ export default {
       }
       return "https://www.kidlink.org/icons/f0-" + langugage + ".gif";
     },
+    getImage(lastpath) {
+      return "http://image.tmdb.org/t/p/w500/" + lastpath;
+    },
+    getValue(value) {
+      if (value >= 1 && value <= 2) {
+        return 1;
+      }
+      if (value >= 2 && value <= 4) {
+        return 2;
+      }
+      if (value >= 4 && value <= 6) {
+        return 3;
+      }
+      if (value >= 6 && value <= 8) {
+        return 4;
+      }
+      if (value >= 8 && value <= 10) {
+        return 5;
+      }
+    },
+    getWhiteStar(value) {
+      let yellowstar = this.getValue(value);
+      if (value == 0) {
+        yellowstar = 0;
+      }
+      const result = 5 - yellowstar;
+
+      return result;
+    },
+    setAltImg(event) {
+      event.target.src = img;
+    },
   },
 };
 </script>
 
 <style>
+.onHover {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+}
+.lp-card:hover .onHover {
+  visibility: visible;
+}
 </style>
