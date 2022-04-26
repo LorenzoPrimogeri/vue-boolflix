@@ -9,7 +9,7 @@
         :key="film.id"
         class="col-2 lp-card position-relative m-4"
       >
-        <div class="">
+        <div class="w-100">
           <img
             :src="getImage(film.poster_path)"
             :alt="film.name"
@@ -109,6 +109,9 @@ export default {
 </script>
 
 <style>
+.card-image {
+  width: 100%;
+}
 .onHover {
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
